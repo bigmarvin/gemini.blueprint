@@ -10,22 +10,22 @@ Eclipse Gemini Blueprint is the reference implementation of the OSGi Alliance Bl
 
 ```bash
 # Build and run unit tests (all modules except integration-tests)
-mvn install
+./mvnw install
 
 # Integration tests with a specific OSGi framework (run from project root)
 # Must pick one profile: equinox, felix, or knopflerfish
-mvn clean install -P equinox
-mvn clean install -P felix
-mvn clean install -P knopflerfish
+./mvnw clean install -P equinox
+./mvnw clean install -P felix
+./mvnw clean install -P knopflerfish
 
 # Run integration tests only (after initial install)
-cd integration-tests && mvn clean install -P equinox
+cd integration-tests && ./mvnw clean install -P equinox
 
 # Run a single unit test
-mvn test -pl core -Dtest=ClassName
+./mvnw test -pl core -Dtest=ClassName
 
 # Run a single integration test
-cd integration-tests/tests && mvn test -P equinox -Dtest=ClassName
+cd integration-tests/tests && ./mvnw test -P equinox -Dtest=ClassName
 ```
 
 Integration tests fork a fresh JVM per run with a 45-minute timeout. Test bundles and tests must be built together per profile — separating these stages causes OSGi dependency issues.
