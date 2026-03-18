@@ -69,6 +69,14 @@ class SwappingServiceReferenceProxy implements ServiceReferenceProxy {
 		return delegate;
 	}
 
+	public synchronized Object adapt(Class type) {
+		return (delegate == null ? null : delegate.adapt(type));
+	}
+
+	public synchronized java.util.Dictionary<String, Object> getProperties() {
+		return (delegate == null ? null : delegate.getProperties());
+	}
+
 	public boolean equals(Object obj) {
         if (this == obj) {
             return true;

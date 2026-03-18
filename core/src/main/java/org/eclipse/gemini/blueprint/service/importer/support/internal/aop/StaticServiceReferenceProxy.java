@@ -67,6 +67,14 @@ public class StaticServiceReferenceProxy implements ServiceReferenceProxy {
 		return target;
 	}
 
+	public Object adapt(Class type) {
+		return target.adapt(type);
+	}
+
+	public java.util.Dictionary<String, Object> getProperties() {
+		return target.getProperties();
+	}
+
 	public boolean equals(Object obj) {
 		if (obj instanceof StaticServiceReferenceProxy) {
 			StaticServiceReferenceProxy other = (StaticServiceReferenceProxy) obj;

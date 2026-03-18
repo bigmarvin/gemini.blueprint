@@ -38,14 +38,15 @@
         <env.buildNumber />
 
         <!-- compiled against osgi Revision -->
-        <osgi.ver>5.0.0</osgi.ver>
+        <osgi.ver>8.0.0</osgi.ver>
+        <osgi.cmpn.ver>7.0.0</osgi.cmpn.ver>
         <!-- platform versions -->
         <!-- equinox - repackaged in ${basedir}/lib/equinox -->
-        <equinox.ver>3.9.1.v20130814-1242</equinox.ver>
+        <equinox.ver>3.18.600</equinox.ver>
         <!-- Knopflerfish -->
         <kf.ver>7.1.2</kf.ver>
         <!-- Felix 4.4.x supports OSGi R5 -->
-        <felix.ver>4.4.0</felix.ver>
+        <felix.ver>7.0.5</felix.ver>
 
         <!-- javadoc configuration -->
         <javadoc.loc>${basedir}/docs/src/javadoc</javadoc.loc>
@@ -264,14 +265,14 @@
 
             <dependency>
                 <groupId>org.osgi</groupId>
-                <artifactId>org.osgi.core</artifactId>
+                <artifactId>osgi.core</artifactId>
                 <version>${osgi.ver}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.osgi</groupId>
-                <artifactId>org.osgi.compendium</artifactId>
-                <version>${osgi.ver}</version>
+                <artifactId>osgi.cmpn</artifactId>
+                <version>${osgi.cmpn.ver}</version>
             </dependency>
 
             <dependency>
@@ -281,7 +282,7 @@
             </dependency>
 
             <dependency>
-                <groupId>org.eclipse.birt.runtime</groupId>
+                <groupId>org.eclipse.platform</groupId>
                 <artifactId>org.eclipse.osgi</artifactId>
                 <version>${equinox.ver}</version>
             </dependency>
@@ -328,7 +329,7 @@
         <dependency>
             <groupId>org.easymock</groupId>
             <artifactId>easymock</artifactId>
-            <version>3.2</version>
+            <version>5.2.0</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -340,8 +341,8 @@
 
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.9.5</version>
+            <artifactId>mockito-core</artifactId>
+            <version>4.11.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -466,7 +467,10 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.19.1</version>
+                    <version>3.2.5</version>
+                    <configuration>
+                        <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
+                    </configuration>
                     <dependencies>
                         <!-- force surefire to use new junit 4.7+ runner, it would normally auto detect this -->
                         <!-- but since we're not using the official junit dependency it is unable to do so.-->
@@ -474,7 +478,7 @@
                         <dependency>
                             <groupId>org.apache.maven.surefire</groupId>
                             <artifactId>surefire-junit47</artifactId>
-                            <version>2.19.1</version>
+                            <version>3.2.5</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -538,7 +542,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-report-plugin</artifactId>
-                    <version>2.19.1</version>
+                    <version>3.2.5</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -552,7 +556,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>3.13.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -790,7 +794,7 @@
             <id>equinox</id>
             <dependencies>
                 <dependency>
-                    <groupId>org.eclipse.birt.runtime</groupId>
+                    <groupId>org.eclipse.platform</groupId>
                     <artifactId>org.eclipse.osgi</artifactId>
                     <version>${equinox.ver}</version>
                     <scope>provided</scope>
@@ -834,7 +838,7 @@
                 </dependency>
                 <dependency>
                     <groupId>org.osgi</groupId>
-                    <artifactId>org.osgi.core</artifactId>
+                    <artifactId>osgi.core</artifactId>
                     <scope>compile</scope>
                 </dependency>
             </dependencies>
@@ -916,7 +920,7 @@
                        they are simply compiled and not executed, thus we need this generic dependency.
                     -->
                     <groupId>org.osgi</groupId>
-                    <artifactId>org.osgi.core</artifactId>
+                    <artifactId>osgi.core</artifactId>
                     <scope>compile</scope>
                 </dependency>
             </dependencies>

@@ -138,7 +138,7 @@ public class ScopeTests extends TestCase {
 		Properties props = (Properties) a;
 		props.put("foo", "bar");
 
-		bf.destroyScopedBean("a");
+		bf.destroyScopedBean("scopedTarget.a");
 
 		System.out.println(ObjectUtils.nullSafeToString(bf.getRegisteredScopeNames()));
 		//assertTrue(props.isEmpty());
