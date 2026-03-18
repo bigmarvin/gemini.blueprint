@@ -43,9 +43,7 @@
         <!-- platform versions -->
         <!-- equinox - repackaged in ${basedir}/lib/equinox -->
         <equinox.ver>3.18.600</equinox.ver>
-        <!-- Knopflerfish -->
-        <kf.ver>7.1.2</kf.ver>
-        <!-- Felix 4.4.x supports OSGi R5 -->
+        <!-- Felix -->
         <felix.ver>7.0.5</felix.ver>
 
         <!-- javadoc configuration -->
@@ -287,11 +285,7 @@
                 <version>${equinox.ver}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.knopflerfish</groupId>
-                <artifactId>framework</artifactId>
-                <version>${kf.ver}</version>
-            </dependency>
+
 
             <dependency>
                 <groupId>org.apache.felix</groupId>
@@ -786,7 +780,7 @@
     </build>
 
 
-    <!-- profiles for equinox, knopflerfish, and felix                 -->
+    <!-- profiles for equinox and felix                                -->
     <!-- to use these profiles invoke maven with -Pprofile-name, e.g. -->
     <!-- mvn -Pfelix test                                             -->
     <profiles>
@@ -802,22 +796,6 @@
             </dependencies>
             <properties>
                 <osgi.test.platform>org.eclipse.gemini.blueprint.test.platform.EquinoxPlatform</osgi.test.platform>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>knopflerfish</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.knopflerfish</groupId>
-                    <artifactId>framework</artifactId>
-                    <version>${kf.ver}</version>
-                    <scope>provided</scope>
-                </dependency>
-            </dependencies>
-            <properties>
-                <osgi.test.platform>org.eclipse.gemini.blueprint.test.platform.KnopflerfishPlatform</osgi.test.platform>
-                <org.knopflerfish.osgi.setcontextclassloader>true</org.knopflerfish.osgi.setcontextclassloader>
             </properties>
         </profile>
 
@@ -916,7 +894,7 @@
                     <!--
                        The test sources are compiled against this generic dependency.
                        usually, test sources are compiled with regard to the framework chosen for
-                       running the integration tests (e.g. felix, knopflerfish...). however, during release
+                       running the integration tests (e.g. equinox, felix). however, during release
                        they are simply compiled and not executed, thus we need this generic dependency.
                     -->
                     <groupId>org.osgi</groupId>
@@ -1041,11 +1019,6 @@
             <url>https://repo1.maven.org/maven2/</url>
         </repository>
 
-        <repository>
-            <id>knopflerfish-repo</id>
-            <name>Official Knopflerfish Repository</name>
-            <url>https://www.knopflerfish.org/maven2/</url>
-        </repository>
     </repositories>
 
 </project>

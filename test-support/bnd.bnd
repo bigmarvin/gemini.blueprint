@@ -15,7 +15,6 @@ Import-Package: \
  org.eclipse.gemini.blueprint.*;version=${gemini.blueprint.version.range}, \
  org.springframework.*;version=${spring.version.range}, \
  org.eclipse.*;resolution:=optional, \
- org.knopflerfish.*;resolution:=optional, \
  org.apache.felix.*;resolution:=optional, \
  junit.*;version=3.8, \
  *;resolution:=optional

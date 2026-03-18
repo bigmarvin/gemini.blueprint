@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Eclipse Gemini Blueprint is the reference implementation of the OSGi Alliance Blueprint Service (OSGi 4.2 Compendium Specification). It integrates Spring Framework with OSGi, enabling Spring-based applications to run inside OSGi containers. Current version: 3.0.1.BUILD-SNAPSHOT, targeting Java 8, Spring 5.0.4, OSGi Core/Compendium 5.0.0.
+Eclipse Gemini Blueprint is the reference implementation of the OSGi Alliance Blueprint Service (OSGi 4.2 Compendium Specification). It integrates Spring Framework with OSGi, enabling Spring-based applications to run inside OSGi containers. Current version: 3.0.1.BUILD-SNAPSHOT, targeting Java 21, Spring 5.0.4, OSGi Core 8.0.0/Compendium 7.0.0.
 
 ## Build Commands
 
@@ -13,10 +13,9 @@ Eclipse Gemini Blueprint is the reference implementation of the OSGi Alliance Bl
 ./mvnw install
 
 # Integration tests with a specific OSGi framework (run from project root)
-# Must pick one profile: equinox, felix, or knopflerfish
+# Must pick one profile: equinox or felix
 ./mvnw clean install -P equinox
 ./mvnw clean install -P felix
-./mvnw clean install -P knopflerfish
 
 # Run integration tests only (after initial install)
 cd integration-tests && ./mvnw clean install -P equinox
@@ -65,7 +64,6 @@ Each module uses a `bnd.bnd` file (processed by the `bnd-maven-plugin`) to gener
 |---------|---------|
 | `equinox` | Run integration tests on Eclipse Equinox |
 | `felix` | Run integration tests on Apache Felix |
-| `knopflerfish` | Run integration tests on Knopflerfish |
 | `security` | Enable Java 2 Security Manager for tests |
 | `clover` | Enable Clover code coverage |
 | `release` | Full release build with GPG signing and docs |
