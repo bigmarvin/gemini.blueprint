@@ -23,8 +23,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Spring version -->
-        <spring.maven.artifact.version>5.0.4.RELEASE_1</spring.maven.artifact.version>
-        <spring.base.version>5.0.0</spring.base.version>
+        <spring.maven.artifact.version>7.0.6</spring.maven.artifact.version>
+        <spring.base.version>7.0.0</spring.base.version>
 
         <symName.prefix>org.eclipse.gemini.blueprint</symName.prefix>
         <spring.osgi.symbolic.name>${project.groupId}.${project.artifactId}</spring.osgi.symbolic.name>
@@ -32,8 +32,8 @@
         <spring.osgi.license.loc>..</spring.osgi.license.loc>
 
         <!-- other properties -->
-        <slf4j.version>1.7.5</slf4j.version>
-        <logback.version>1.0.13</logback.version>
+        <slf4j.version>2.0.16</slf4j.version>
+        <logback.version>1.5.16</logback.version>
         <env.buildPlan />
         <env.buildNumber />
 
@@ -59,9 +59,9 @@
         <security.argLine />
         <policy.url>..${file.separator}policy.all</policy.url>
 
-        <!-- common version ranges -->
-        <spring.version.range.nq>[${spring.base.version},6)</spring.version.range.nq>
-        <spring.version.range>"${spring.version.range.nq}"</spring.version.range>
+        <!-- common version ranges (no version constraint on Spring packages) -->
+        <spring.version.range.nq></spring.version.range.nq>
+        <spring.version.range></spring.version.range>
         <gemini.blueprint.version.range.nq>[${project.version},${project.version}]</gemini.blueprint.version.range.nq>
         <gemini.blueprint.version.range>"${gemini.blueprint.version.range.nq}"</gemini.blueprint.version.range>
         <logging.version.range>"[1.0,2.0)"</logging.version.range>
@@ -220,45 +220,39 @@
 
             <!-- Spring -->
             <dependency>
-                <groupId>org.apache.servicemix.bundles</groupId>
-                <artifactId>org.apache.servicemix.bundles.spring-aop</artifactId>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
                 <version>${spring.maven.artifact.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>org.apache.servicemix.bundles</groupId>
-                <artifactId>org.apache.servicemix.bundles.spring-beans</artifactId>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
                 <version>${spring.maven.artifact.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>org.apache.servicemix.bundles</groupId>
-                <artifactId>org.apache.servicemix.bundles.spring-core</artifactId>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
                 <version>${spring.maven.artifact.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>org.apache.servicemix.bundles</groupId>
-                <artifactId>org.apache.servicemix.bundles.spring-context</artifactId>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
                 <version>${spring.maven.artifact.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>org.apache.servicemix.bundles</groupId>
-                <artifactId>org.apache.servicemix.bundles.spring-expression</artifactId>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
                 <version>${spring.maven.artifact.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>org.apache.servicemix.bundles</groupId>
-                <artifactId>org.apache.servicemix.bundles.spring-test</artifactId>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
                 <version>${spring.maven.artifact.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.servicemix.bundles</groupId>
-                <artifactId>org.apache.servicemix.bundles.aopalliance</artifactId>
-                <version>1.0_6</version>
             </dependency>
 
             <dependency>
@@ -274,9 +268,9 @@
             </dependency>
 
             <dependency>
-                <groupId>org.apache.servicemix.bundles</groupId>
-                <artifactId>org.apache.servicemix.bundles.junit</artifactId>
-                <version>4.12_1</version>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.13.2</version>
             </dependency>
 
             <dependency>
@@ -307,16 +301,10 @@
 
     <!-- shared dependencies across modules -->
     <dependencies>
-        <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-            <version>1</version>
-        </dependency>
-
         <!-- junit -->
         <dependency>
-            <groupId>org.apache.servicemix.bundles</groupId>
-            <artifactId>org.apache.servicemix.bundles.junit</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
 
@@ -345,14 +333,6 @@
             <artifactId>assertj-core</artifactId>
             <version>3.6.2</version>
             <scope>test</scope>
-        </dependency>
-
-        <!-- commons-logging in slf4j wrapper -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -465,16 +445,6 @@
                     <configuration>
                         <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
                     </configuration>
-                    <dependencies>
-                        <!-- force surefire to use new junit 4.7+ runner, it would normally auto detect this -->
-                        <!-- but since we're not using the official junit dependency it is unable to do so.-->
-                        <!-- - this makes things like @Ignore work. -->
-                        <dependency>
-                            <groupId>org.apache.maven.surefire</groupId>
-                            <artifactId>surefire-junit47</artifactId>
-                            <version>3.2.5</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -552,8 +522,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
             <plugin>

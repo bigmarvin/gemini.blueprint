@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Eclipse Gemini Blueprint is the reference implementation of the OSGi Alliance Blueprint Service (OSGi 4.2 Compendium Specification). It integrates Spring Framework with OSGi, enabling Spring-based applications to run inside OSGi containers. Current version: 3.0.1.BUILD-SNAPSHOT, targeting Java 21, Spring 5.0.4, OSGi Core 8.0.0/Compendium 7.0.0.
+Eclipse Gemini Blueprint is the reference implementation of the OSGi Alliance Blueprint Service (OSGi 4.2 Compendium Specification). It integrates Spring Framework with OSGi, enabling Spring-based applications to run inside OSGi containers. Current version: 3.0.1.BUILD-SNAPSHOT, targeting Java 17+ (compiled with source/target 17), Spring 7.0.6, OSGi Core 8.0.0/Compendium 7.0.0.
 
 ## Build Commands
 
