@@ -41,8 +41,8 @@
         <osgi.ver>8.0.0</osgi.ver>
         <osgi.cmpn.ver>7.0.0</osgi.cmpn.ver>
         <!-- platform versions -->
-        <!-- equinox - repackaged in ${basedir}/lib/equinox -->
-        <equinox.ver>3.18.600</equinox.ver>
+        <!-- equinox -->
+        <equinox.ver>3.23.100</equinox.ver>
         <!-- Felix -->
         <felix.ver>7.0.5</felix.ver>
 
