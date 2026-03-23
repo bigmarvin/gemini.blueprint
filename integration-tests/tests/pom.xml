@@ -39,6 +39,44 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- SPI Fly: bridges java.util.ServiceLoader with OSGi module system.
+             Required by SLF4J 2.x which uses ServiceLoader to discover Logback.
+             The dynamic bundle variant uses proper OSGi bundles (no embedding).
+             These are runtime-only deps (not used in source code); declared so
+             Maven downloads them to the local repository for the test framework
+             to locate and install as OSGi bundles. -->
+        <dependency>
+            <groupId>org.apache.aries.spifly</groupId>
+            <artifactId>org.apache.aries.spifly.dynamic.bundle</artifactId>
+            <version>1.3.7</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- ASM bundles required by SPI Fly for bytecode weaving -->
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-tree</artifactId>
+            <version>9.7.1</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-analysis</artifactId>
+            <version>9.7.1</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-commons</artifactId>
+            <version>9.7.1</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-util</artifactId>
+            <version>9.7.1</version>
+            <scope>runtime</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.eclipse.gemini.blueprint</groupId>
             <artifactId>gemini-blueprint-core</artifactId>
