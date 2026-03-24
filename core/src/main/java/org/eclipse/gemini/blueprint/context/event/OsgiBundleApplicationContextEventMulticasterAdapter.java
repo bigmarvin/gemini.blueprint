@@ -66,7 +66,7 @@ public class OsgiBundleApplicationContextEventMulticasterAdapter implements
 	 * listener instance. However, depending on the equals implementation, this might affect the object identity.
 	 */
 	public void removeApplicationListener(OsgiBundleApplicationContextListener osgiListener) {
-		Assert.notNull(null, "argument must not be null");
+		Assert.notNull(osgiListener, "argument must not be null");
 		delegatedMulticaster.removeApplicationListener(ApplicationListenerAdapter.createAdapter(osgiListener));
 	}
 }
